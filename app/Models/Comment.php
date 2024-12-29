@@ -23,4 +23,7 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = null;
 }

@@ -50,4 +50,6 @@ class CommentController extends Controller
 
         return view('pages.comment', ['comments' => $comments]);
     }
+
+    
 }

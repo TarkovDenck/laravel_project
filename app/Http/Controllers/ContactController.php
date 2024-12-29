@@ -35,6 +35,11 @@ class ContactController extends Controller
 
         return redirect()->back()->with('success', 'Your message has been successfully sent.');
     }
+
+    public function showContacts() {
+        $contacts = Contact::all();
+        return view('admin.Contact-List', compact('contacts'));
+    }
  
     
 }

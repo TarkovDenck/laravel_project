@@ -22,6 +22,11 @@ class PcBranchController extends Controller
         return view('pages.pc-branch-high');
     }
 
+    public function showPcBranchform()
+    {
+        return view('pages.form-preorder');
+    }
+
     // Menangani Logout
     public function logout(Request $request)
     {

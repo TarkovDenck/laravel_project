@@ -33,7 +33,7 @@
 
             <div class="remember-forgot">
                 <label><input type="checkbox" name="remember"> Remember Me!</label>
-                <a href="/change-password">Forgot Password?</a>
+                <a href="/change-password">Change Password?</a>
             </div>
 
             <button type="submit" class="btn">Login</button>

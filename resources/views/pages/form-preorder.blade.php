@@ -8,12 +8,9 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <!-- Mengimpor CSS SweetAlert2 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-        <script>
-            // Define the global object
-            window.sharedData = {};
-        </script>
+      
 </head>
 <body>
       <!-- Mengimpor JS SweetAlert2 -->
@@ -33,34 +30,32 @@
         <div class="collapse navbar-collapse navbar-collapse-sorting" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="home.html" style="color: #000000;">Home <span class="sr-only"></span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="catalog.html" style="color: #000000;">Shop</a>
-              <!-- <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="position: absolute; right: 0;">
-                <a class="dropdown-item" href="Shop1.html">Low Specifications PC</a>
-                <a class="dropdown-item" href="Shop2.html">Medium Specifications PC</a>
-                <a class="dropdown-item" href="Shop3.html">High Specifications PC</a>
-              </div> -->
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="about.html" style="color: #000000;">About us</a>
-              <div class="wow"></div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html" style="color: #000000;">Contact</a>
-            </li>
+              <a class="nav-link" href="{{ url('home') }}" style="color: #000000;">Home</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('catalog') }}" style="color: #000000;">Shop</a>
+          </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="{{ url('about') }}" style="color: #000000;">About us</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('contact') }}" style="color: #000000;">Contact</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{ url('comment') }}" style="color: #000000;">Comment</a>
+          </li>>
           </ul>
           <!-- Tombol Login/Logout -->
           @guest
           <!-- Tampilkan jika belum login -->
-          <a href="/login" class="btn btn-primary">Log in</a>
+          <a href="{{ route('login') }}" class="btn btn-primary">Log in</a>
           @endguest
+
           @auth
               <!-- Tampilkan jika sudah login -->
               <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      Account
+                      {{ Auth::user()->username }} <!-- Menampilkan username -->
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log out</a></li>
@@ -70,6 +65,7 @@
                   </ul>
               </div>
           @endauth
+
         </div>
       </div>
     </nav>
@@ -119,7 +115,7 @@
                               </select>
                             </div>
                             <div class="col-md-2">
-                              <label for="inputZip" class="form-label">Zip</label>
+                              <label for="inputZip" class="form-label">Pos Code</label>
                               <input type="text" class="form-control" id="inputZip">
                             </div>
                             <div></div>
