@@ -34,11 +34,15 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info d-flex justify-content-between w-100">
           <!-- Menampilkan nama pengguna yang login -->
-          @if(Auth::guard('admin')->check())
+          @auth('admin')
+              <!-- Konten yang hanya boleh diakses oleh admin -->
               <a class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
           @else
-              <a class="d-block">Guest</a>
-          @endif
+              <script>
+                  window.location.href = "{{ route('admin.login-admin') }}"; // Arahkan ke halaman login
+              </script>
+          @endauth
+      
           <!-- Tombol Logout -->
           <form action="{{ route('admin.logout') }}" method="POST" class="d-inline">
             @csrf
@@ -104,7 +108,7 @@
       @else
         <!-- Jika pengguna belum login, arahkan ke halaman login -->
         <script>
-          window.location.href = "{{ route('admin.login') }}";
+          window.location.href = "{{ route('admin.login-admin') }}";
         </script>
       @endauth
     </section>

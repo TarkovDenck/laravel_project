@@ -69,7 +69,16 @@ class AdminAuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login-admin');
+    }
+
+
+    public function adminPage()
+    {
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login-admin'); // Redirect jika belum login
+        }
+        return view('admin.adminpage'); // Halaman admin
     }
 }
 

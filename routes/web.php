@@ -11,6 +11,8 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\PcBranchController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Table1Controller;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Contact;
 
 Route::get('/', function () {
@@ -25,7 +27,7 @@ Route::get('/catalog', function () {
     return view('pages.catalog');
 })->name('catalog');
 
-Route::get('/contact', function () {
+Route::get('/contact-page', function () {
     return view('pages.contact');
 });
 
@@ -126,20 +128,31 @@ Route::get('/login-admin', function () {
     return view('admin.login-admin');
 });
 
-Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
 
-Route::get('/admin/dashboard', [AdminAuthController::class, 'dashboard'])->middleware('auth:admin')->name('admin.adminpage');
-Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
 
 
 
 // Hanya bisa diakses jika sudah login
-Route::middleware('auth:admin')->get('/admin/dashboard', [AdminAuthController::class, 'dashboard'])->name('admin.adminpage');
+Route::get('/adminpage', [AdminAuthController::class, 'adminPage'])->name('admin.adminpage');
 
 Route::get('/adminpage', function () {
+    if (!Auth::guard('admin')->check()) {
+        return redirect()->route('admin.login-admin'); // Redirect jika belum login
+    }
     return view('admin.adminpage');
-})->middleware('auth:admin')->name('admin.adminpage');
+})->name('admin.adminpage');
+
+Route::get('/admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login-admin');
+Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+Route::get('/adminpage', [AdminAuthController::class, 'adminPage'])->name('admin.adminpage');
+
+
+
+
+
 
 
 

@@ -31,7 +31,7 @@
                     <div class="wow"></div>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/contact" style="color: #000000;">Contact</a>
+                    <a class="nav-link" href="/contact-page" style="color: #000000;">Contact</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/comment" style="color: #000000;">Comments</a>

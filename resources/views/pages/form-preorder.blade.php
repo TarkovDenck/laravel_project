@@ -39,7 +39,7 @@
               <a class="nav-link" href="{{ url('about') }}" style="color: #000000;">About us</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{ url('contact') }}" style="color: #000000;">Contact</a>
+              <a class="nav-link" href="{{ url('Contact-page') }}" style="color: #000000;">Contact</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="{{ url('comment') }}" style="color: #000000;">Comment</a>

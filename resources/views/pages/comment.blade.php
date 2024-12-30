@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link" href="/home" style="color: #000000;">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/catalog" style="color: #000000;">Shop</a></li>
                     <li class="nav-item active"><a class="nav-link" href="/about" style="color: #000000;">About us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/contact" style="color: #000000;">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact-page" style="color: #000000;">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="/comment" style="color: #000000;">Comments</a></li>
                 </ul>
                 @guest
