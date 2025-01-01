@@ -82,8 +82,15 @@
             <a href="{{ route('admin.contact') }}" class="nav-link">
               <i class="nav-icon fas fa-envelope"></i>
               <p>Contact</p>
-          </a>
+            </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.purchases') }}" class="nav-link">
+                <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>Purchases</p>
+            </a>
+          </li>
+        
         </ul>
       </nav>
     </div>

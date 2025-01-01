@@ -12,8 +12,15 @@ use App\Http\Controllers\PcBranchController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Table1Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PurchaseController;
+
+use App\Http\Controllers\AdminPurchaseController; 
+
+
 
 use App\Models\Contact;
+use App\Models\Purchase;
+use Faker\Provider\ar_EG\Payment;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,9 +38,7 @@ Route::get('/contact-page', function () {
     return view('pages.contact');
 });
 
-Route::get('/form-preorder', function () {
-    return view('pages.form-preorder');
-});
+
 
 Route::get('/home', function () {
     return view('pages.home');
@@ -163,5 +168,25 @@ Route::delete('/table1/{id}', [Table1Controller::class, 'destroy'])->name('table
 Route::get('/table2', [Table1Controller::class, 'showTable2'])->name('table2');
 
 Route::delete('/comments/{id}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+    Route::get('purchases', [AdminPurchaseController::class, 'index'])->name('purchases');
+    Route::get('purchases/{id}', [AdminPurchaseController::class, 'show'])->name('purchases.show');
+    Route::delete('purchases/{id}', [AdminPurchaseController::class, 'destroy'])->name('purchases.destroy');
+    Route::patch('purchases/{id}/status', [AdminPurchaseController::class, 'updateStatus'])->name('purchases.update-status');
+});
+
+
+
+
+
+// Route to get the payment token (for frontend to request)
+Route::middleware(['auth'])->group(function () {
+    Route::get('/form-preorder', [PurchaseController::class, 'showForm'])->name('form-preorder');
+    Route::post('/store-preorder', [PurchaseController::class, 'storePreorder'])->name('store-preorder');
+});
+
+
+
 
 

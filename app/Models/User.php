@@ -50,6 +50,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class); // A user can have many comments
     }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
   
 
     

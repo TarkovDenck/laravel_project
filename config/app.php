@@ -122,5 +122,8 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    'midtrans_client_key' => env('MIDTRANS_CLIENT_KEY'),
+    'midtrans_server_key' => env('MIDTRANS_SERVER_KEY'),
+
 
 ];

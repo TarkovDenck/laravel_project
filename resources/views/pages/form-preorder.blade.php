@@ -13,10 +13,7 @@
       
 </head>
 <body>
-      <!-- Mengimpor JS SweetAlert2 -->
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-      <!-- Mengimpor file JavaScript terpisah -->
-      <script src=""></script>
+      
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-main">
@@ -43,7 +40,7 @@
           </li>
           <li class="nav-item">
               <a class="nav-link" href="{{ url('comment') }}" style="color: #000000;">Comment</a>
-          </li>>
+          </li>
           </ul>
           <!-- Tombol Login/Logout -->
           @guest
@@ -90,111 +87,52 @@
                   <div class="card cardbg cardsize">
                       <div class="card-body card-content card-typography card-design">
                         <div class="formdesign">
-                          <form class="row g-3">
+                          <form class="row g-3" id="payment-form" method="POST" action="{{ route('store-preorder') }}">
+                            @csrf
                             <div class="col-md-6">
-                              <label for="inputEmail4" class="form-label">Email</label>
-                              <input type="email" class="form-control" id="inputEmail4">
+                                <label for="inputEmail4" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail4" name="email" required>
                             </div>
                             <div class="col-md-6">
-                              <label for="inputPassword4" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="inputPassword4">
+                                <label for="inputPassword4" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="inputPassword4" name="password" required>
                             </div>
                             <div class="col-12">
-                              <label for="inputAddress" class="form-label">Address</label>
-                              <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <label for="inputAddress" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St" required>
                             </div>
                             <div class="col-md-6">
-                              <label for="inputCity" class="form-label">City</label>
-                              <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="col-md-4">
-                              <label for="inputState" class="form-label">State</label>
-                              <select id="inputState" class="form-select">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                              </select>
+                                <label for="inputCity" class="form-label">City</label>
+                                <input type="text" class="form-control" id="inputCity" name="city" required>
                             </div>
                             <div class="col-md-2">
-                              <label for="inputZip" class="form-label">Pos Code</label>
-                              <input type="text" class="form-control" id="inputZip">
+                                <label for="inputZip" class="form-label">Pos Code</label>
+                                <input type="text" class="form-control" id="inputZip" name="zip" required>
                             </div>
-                            <div></div>
-                            <div class="underline">
-                            
+                            <div class="col-md-4">
+                              <label for="productSelect" class="form-label">Product</label>
+                              <select class="form-select" id="productSelect" name="product_id" required>
+                                @foreach($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+
+                              </select>
                             </div>
-                              <div  class="card-typography">
-                                <h2 class="gradient-text-silver display-1 fade-in-right">
-                                    AMD POWER SILVER
-                                </h2>
-                                <div class="list-main">
-                                  <h5 class="lead fade-in-right">Build Specifications:</h5>
-                                  <ul class="list-main" style="opacity: 90%;">  
-                                      <li class="fade-in-right">
-                                          COUGAR Duoface RGB Mid-Tower Case - Black
-                                      </li>
-                                      <li class="fade-in-right">
-                                          DeepCool LT520 Liquid CPU Cooler - Black
-                                      </li>
-                                      <li class="fade-in-right">
-                                          MSI MAG B650 Tomahawk WiFi DDR5 ATX Motherboard
-                                      </li>
-                                      <li class="fade-in-right">
-                                          AMD Ryzen 7 7800X3D Processor
-                                      </li>
-                                      <li class="fade-in-right">
-                                          KINGSTON Fury Beast RGB 32GB (2x16GB) DDR5 6000MHz C36 RAM - Black
-                                      </li>
-                                      <li class="fade-in-right">
-                                          KINGSTON SKC3000d 2TB Gen4 NVMe SSD
-                                      </li>
-                                      <li class="fade-in-right">
-                                          MSI Ventus 3X GeForce RTX 4080 Super OC 16GB
-                                      </li>
-                                      <li class="fade-in-right">
-                                          be quiet! PURE POWER 12 850W 80+ Gold Fully-Modular ATX 3.0 Power Supply
-                                      </li>
-                                      <li class="fade-in-right">
-                                          Windows 11
-                                      </li>
-                                  </ul>
-                                  <div class="card-typography">
-                                    <h3 class="glow fade-in-right">
-                                      Total Price: $1,444.44
-                                  </h3>
-                                  </div>  
-                                </div>
-                              </div>  
-                              <div class="underline">
-                            
-                              </div>  
-                              <div>
-                                <label for="shippingMethod" class="form-label">Choose Your Shipping Option</label>
-                                <select class="form-select" id="paymentMethod"  aria-label="Default select example">
-                                  <option value="1">Regular (Estimation of 1 Month)</option>
-                                  <option value="2">Express (Estimation of 1 Week)</option>
-                                </select>
-                              </div>
-                              <div></div>
-                              <div>
-                                <label for="paymentMethod" class="form-label">Choose Your Payment Method</label>
-                                <select class="form-select" id="paymentMethod"  aria-label="Default select example">
-                                  <option value="1">Cash on Delivery</option>
-                                  <option value="2">Debit Card</option>
-                                  <option value="3">Credit Card</option>
-                                </select>
-                              </div>
-                              <div class="col-12">
+                          
+                            <div class="col-md-6">
+                                <label for="inputQuantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="inputQuantity" name="quantity" required>
+                            </div>
+                            <div class="col-12">
                                 <div class="form-check">
-                                  <input class="form-check-input" type="checkbox" id="agreeTerms">
-                                  <label class="form-check-label" for="agreeTerms">
-                                    I Agree for All Terms and Conditions
-                                  </label>
+                                    <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                    <label class="form-check-label" for="agreeTerms">I Agree for All Terms and Conditions</label>
                                 </div>
-                              </div>                        
-                              <div class="col-12">
-                                <button type="submit" class="btn btn-primary">Finish Payment</button>
-                              </div> 
-                          </form>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary" id="pay-button">Finish Payment</button>
+                            </div>
+                        </form>
                         </div>
                       </div>
                   </div>
@@ -238,5 +176,18 @@
             </p>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+    @if(session('swal'))
+        <script>
+            Swal.fire({
+                title: "{{ session('swal')['title'] }}",
+                text: "{{ session('swal')['text'] }}",
+                icon: "{{ session('swal')['icon'] }}",
+                showConfirmButton: true
+            });
+        </script>
+    @endif
+
 </body>
 </html>

@@ -149,7 +149,7 @@
                                 </ul>
                               </div>
                             </div>
-                          <a href="form-preorder.html" class="btn btn-primary button-blue">Go Pre-order Now!</a>
+                          <a href="/form-preorder" class="btn btn-primary button-blue">Go Pre-order Now!</a>
                         </div>
                     </div>
                     <div class="card cardbg cardsize">
@@ -194,7 +194,7 @@
                                 </ul>
                               </div>
                             </div>
-                          <a href="form-preorder.html" class="btn btn-primary button-blue">Go Pre-order Now!</a>
+                          <a href="/form-preorder" class="btn btn-primary button-blue">Go Pre-order Now!</a>
                         </div>
                     </div>
                     <div class="card cardbg cardsize">
@@ -239,7 +239,7 @@
                                 </ul>
                               </div>
                             </div>
-                          <a href="form-preorder.html" class="btn btn-primary button-blue">Go Pre-order Now!</a>
+                          <a href="/form-preorder" class="btn btn-primary button-blue">Go Pre-order Now!</a>
                         </div>
                     </div>
                 </div>

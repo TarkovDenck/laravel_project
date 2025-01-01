@@ -93,7 +93,7 @@
                             <h2 class="display-5 card-title gradient-text-red">Low Specifications PC</h2>
                             <p class="lead card-text">Your gateway to the digital world. Simple, affordable, and perfect for everyday tasks.</p>
                             @auth
-                                <a href="/pc-branch-low" class="btn btn-primary button-red">Go Pre-order Now!</a>
+                                <a href="0/pc-branch-low" class="btn btn-primary button-red">Go Pre-order Now!</a>
                             @else
                                 <a href="/login" class="btn btn-primary button-red">Log in to Pre-order</a>
                             @endauth
