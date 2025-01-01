@@ -1,4 +1,3 @@
-// resources/views/admin/purchase.blade.php
 
 @extends('admin.adminpage')
 

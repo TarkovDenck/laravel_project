@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\Table1Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\AdminPurchaseController; 
 
@@ -175,6 +176,26 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::delete('purchases/{id}', [AdminPurchaseController::class, 'destroy'])->name('purchases.destroy');
     Route::patch('purchases/{id}/status', [AdminPurchaseController::class, 'updateStatus'])->name('purchases.update-status');
 });
+
+Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function () {
+    Route::get('purchases', [AdminPurchaseController::class, 'index'])->name('purchases');
+    Route::patch('purchases/{id}/status', [AdminPurchaseController::class, 'updateStatus'])->name('purchases.update-status'); // Tambahkan route ini
+});
+
+Route::middleware(['auth:admin'])->group(function () {
+    // Product Routes
+    Route::get('products', [ProductController::class, 'index'])->name('admin.products');
+    Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('admin.products.store');
+    
+    // Edit and update product routes
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+    
+    // Delete product route
+    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+});
+
 
 
 
