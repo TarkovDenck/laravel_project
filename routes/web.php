@@ -197,15 +197,25 @@ Route::middleware(['auth:admin'])->group(function () {
 });
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/form-preorder', [PurchaseController::class, 'showForm'])->name('form-preorder');
+    Route::post('/store-preorder', [PurchaseController::class, 'storePreorder'])->name('store-preorder');
+});
 
 
 
 
 // Route to get the payment token (for frontend to request)
-Route::middleware(['auth'])->group(function () {
-    Route::get('/form-preorder', [PurchaseController::class, 'showForm'])->name('form-preorder');
-    Route::post('/store-preorder', [PurchaseController::class, 'storePreorder'])->name('store-preorder');
-});
+Route::get('/products', [ProductController::class, 'index'])->name('admin.products');
+Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
+Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+Route::put('products/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+
+
+
+
+
 
 
 

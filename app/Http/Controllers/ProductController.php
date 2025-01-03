@@ -5,12 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Purchase;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     // Display a list of products
     public function index()
     {
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login-admin');
+        }
+
         $products = Product::all();
         return view('admin.products.index', compact('products'));
     }
@@ -43,6 +49,10 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login-admin');
+        }
+
         $product = Product::findOrFail($id);
         return view('admin.products.edit', compact('product'));
     }
@@ -50,6 +60,10 @@ class ProductController extends Controller
     // Update an existing product
     public function update(Request $request, $id)
     {
+        if (!Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login-admin');
+        }
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
@@ -74,5 +88,8 @@ class ProductController extends Controller
 
         return redirect()->route('admin.products')->with('success', 'Product deleted successfully!');
     }
+
+    
+    
 }
 

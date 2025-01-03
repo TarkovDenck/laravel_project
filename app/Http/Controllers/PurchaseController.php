@@ -69,4 +69,5 @@ class PurchaseController extends Controller
         return redirect()->route('form-preorder');
     }
 
+    
 }
